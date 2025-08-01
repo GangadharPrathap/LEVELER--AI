@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leveler AI</title>
+    <title>Leveler Ai</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -166,13 +166,13 @@
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px var(--red-main);
             position: relative;
-            display: flex; /* Make card a flex container */
-            flex-direction: column; /* Stack image and content vertically */
+            display: flex;
+            flex-direction: column;
         }
 
         body.light-theme .language-course-card {
             border: 1px solid var(--border-color-light);
-            box-shadow: 0 5px 15px rgba(238, 0, 0, 0.4); /* Light theme red shadow */
+            box-shadow: 0 5px 15px rgba(238, 0, 0, 0.4);
         }
 
         .language-course-card:hover {
@@ -198,11 +198,11 @@
 
         .card-content {
             padding: 1.5rem;
-            display: flex; /* Make content a flex container */
-            flex-direction: column; /* Stack h3, p, and button vertically */
-            flex-grow: 1; /* Allow content to grow and fill available space */
-            min-height: 200px; /* Ensure consistent height for content area */
-            justify-content: space-between; /* Pushes button to the bottom */
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            min-height: 200px;
+            justify-content: space-between;
         }
 
         .card-content h3 {
@@ -216,10 +216,10 @@
             margin-bottom: 1.2rem;
             color: var(--text-secondary);
             font-size: 0.95rem;
-            flex-grow: 1; /* Allow paragraph to take up available space */
+            flex-grow: 1;
         }
 
-        .card-content .tutorial-button { /* Changed to class selector */
+        .card-content .tutorial-button {
             display: inline-block;
             padding: 0.6rem 1.2rem;
             background-color: var(--red-main);
@@ -229,9 +229,44 @@
             transition: all 0.3s ease;
             border-radius: 5px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            text-align: center; /* Center text in button */
-            width: fit-content; /* Make button only as wide as its content */
-            margin-top: auto; /* Pushes the button to the bottom of the flex container */
+            text-align: center;
+            width: fit-content;
+            margin-top: auto;
+        }
+
+        .control-buttons-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        #mark-progress, #trigger-penalty, #clear-penalty {
+            padding: 10px 20px;
+            background: #00FFFF;
+            color: #0A0A1F;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            border-radius: 5px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        #mark-progress:hover, #trigger-penalty:hover, #clear-penalty:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px var(--glow-color);
+        }
+
+        #clear-penalty {
+            background-color: var(--red-main);
+            color: var(--text-primary);
+        }
+
+        #clear-penalty:hover {
+            box-shadow: 0 0 10px var(--red-accent);
         }
 
         .card-content .tutorial-button:hover {
@@ -260,18 +295,18 @@
 
         /* --- Course Overlay Styles --- */
         #course-overlay {
-            display: none; /* Hidden by default */
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9); /* Dark overlay */
+            background-color: rgba(0, 0, 0, 0.9);
             z-index: 1000;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            overflow-y: auto; /* Enable scrolling for long content */
+            overflow-y: auto;
         }
 
         .course-content-container {
@@ -285,14 +320,12 @@
             box-shadow: 0 0 25px var(--glow-color);
             position: relative;
             animation: fadeInScale 0.3s ease-out forwards;
-
         }
 
         body.light-theme .course-content-container {
-             border: 1px solid var(--border-color-light);
-             box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+            border: 1px solid var(--border-color-light);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
         }
-
 
         @keyframes fadeInScale {
             from {
@@ -350,7 +383,7 @@
         #overlay-youtube-embed iframe {
             width: 100%;
             max-width: 700px;
-            height: 400px; /* Adjust height as needed */
+            height: 400px;
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
         }
@@ -378,7 +411,7 @@
 
         .progress-bar {
             height: 100%;
-            background-color: var(--glow-color); /* Cyan glow color for progress */
+            background-color: var(--glow-color);
             width: 0%;
             border-radius: 5px;
             transition: width 0.4s ease-in-out;
@@ -417,19 +450,74 @@
             margin-right: 10px;
             width: 20px;
             height: 20px;
-            accent-color: var(--red-main); /* Style checkbox accent color */
+            accent-color: var(--red-main);
             cursor: pointer;
         }
 
         .topic-item label {
             cursor: pointer;
-            user-select: none; /* Prevent text selection on label click */
+            user-select: none;
         }
 
         .topic-item input[type="checkbox"]:checked + label {
             text-decoration: line-through;
             color: var(--red-accent);
         }
+
+        /* Message Box Styling */
+        #message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 30px;
+            background-color: var(--bg-secondary);
+            border: 2px solid var(--glow-color);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            z-index: 3000;
+            text-align: center;
+            display: none;
+        }
+
+        #message-box p {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+
+        #message-box button {
+            padding: 8px 15px;
+            background-color: var(--red-main);
+            color: var(--text-primary);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #message-box button:hover {
+            background-color: var(--red-accent);
+        }
+
+        #admin-exit {
+            width:10px;
+            height: 10px;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 2em;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 2001; /* Ensure it's above the penalty overlay content */
+            transition: transform 0.2s ease;
+        }
+
+        #admin-exit:hover {
+            transform: scale(1.1);
+        }
+
 
         /* --- Responsive Design --- */
         @media (max-width: 992px) {
@@ -443,10 +531,11 @@
             #themeToggle { right: 0; }
             .section-title { font-size: 2rem; }
             .languages-courses-grid { gap: 2rem; }
-            .card-content { min-height: 180px; padding: 1.2rem;} /* Adjusted min-height */
+            .card-content { min-height: 180px; padding: 1.2rem;}
             .card-content h3 { font-size: 1.2rem; }
             .card-content p { font-size: 0.9rem; }
             .copyright { font-size: 0.85rem; }
+            .control-buttons-container { bottom: 10px; right: 10px; }
 
             .course-content-container { padding: 2rem; }
             #overlay-course-title { font-size: 1.8rem; }
@@ -469,8 +558,9 @@
             .section-title::after { width: 80px; }
             .languages-courses-grid { grid-template-columns: 1fr; gap: 1.5rem; }
             footer { padding: 1rem 1.5rem; margin-top: 3rem; }
-            .card-content { min-height: unset; height: auto;} /* Allow height to adjust on smaller screens */
-            .card-content p { margin-bottom: 0.8rem; } /* Reduce margin for paragraphs */
+            .card-content { min-height: unset; height: auto;}
+            .card-content p { margin-bottom: 0.8rem; }
+            .control-buttons-container { bottom: 10px; right: 10px; flex-direction: column; }
 
             .course-content-container { padding: 1.5rem; }
             #overlay-course-title { font-size: 1.6rem; margin-bottom: 1rem;}
@@ -502,6 +592,7 @@
     </style>
 </head>
 <body>
+    <div id="course-timer" style="position:fixed; top:10px; right:20px; padding:10px 15px; background:#1C1C3A;color:#00FFFF; font-family:Orbitron,sans-serif; border:1px solid #00FFFF; z-index:1000;">Time Left: 60:00</div>
     <header>
         <nav>
             <div class="logo">
@@ -657,7 +748,7 @@
 
     <footer>
         <div class="copyright">
-            <p>© 2025 Leveler AI. All rights reserved.</p>
+            <p>ﾂｩ 2025 CodeMonochrome. All rights reserved.</p>
         </div>
     </footer>
 
@@ -683,9 +774,40 @@
         </div>
     </div>
 
+    <div id="penalty-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(10,10,31,0.95);color:#FF5555; font-size:1.5em; text-align:center; padding-top:20%; z-index:2000; font-family:Orbitron,sans-serif;">
+        <button id="admin-exit">😠</button>
+        ⛔ You failed to complete the course on time. Penalty in effect for 15 minutes.
+    </div>
+    <div class="control-buttons-container">
+        <button id="mark-progress">Simulate Progress +10%</button>
+        <button id="trigger-penalty">Trigger Penalty</button>
+        <button id="clear-penalty">Clear Penalty</button>
+    </div>
+
+    <div id="message-box">
+        <p id="message-text"></p>
+        <button id="message-ok-button">OK</button>
+    </div>
+
     <script>
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
+        const messageBox = document.getElementById('message-box');
+        const messageText = document.getElementById('message-text');
+        const messageOkButton = document.getElementById('message-ok-button');
+
+        const loggedInUserEmail = 'user@example.com';
+
+        // Helper function to show a custom message box
+        function showMessage(message) {
+            messageText.textContent = message;
+            messageBox.style.display = 'block';
+        }
+
+        // Hide the message box when the OK button is clicked
+        messageOkButton.addEventListener('click', () => {
+            messageBox.style.display = 'none';
+        });
 
         function setTheme(theme) {
             if (theme === 'light') {
@@ -717,7 +839,7 @@
         const coursesData = {
             "javascript": {
                 title: "JavaScript: The Complete Guide",
-                youtubeId: "Ihy0QziLDf0", // Placeholder YouTube ID
+                youtubeId: "Ihy0QziLDf0",
                 topics: [
                     "Introduction to JavaScript",
                     "Variables and Data Types",
@@ -734,7 +856,7 @@
             },
             "python": {
                 title: "Python for Beginners & Beyond",
-                youtubeId: "rfscVS0vtbw", // Placeholder YouTube ID
+                youtubeId: "rfscVS0vtbw",
                 topics: [
                     "Python Basics: Syntax and Variables",
                     "Data Structures: Lists, Tuples, Dictionaries, Sets",
@@ -749,7 +871,7 @@
             },
             "java": {
                 title: "Java Programming Masterclass",
-                youtubeId: "23HFxAPyJ9U", // Placeholder YouTube ID
+                youtubeId: "23HFxAPyJ9U",
                 topics: [
                     "Java Fundamentals and JVM",
                     "Primitive Types and Objects",
@@ -766,7 +888,7 @@
             },
             "cpp": {
                 title: "C++: Data Structures & Algorithms",
-                youtubeId: "S3nx34WFXjI", // Placeholder YouTube ID
+                youtubeId: "S3nx34WFXjI",
                 topics: [
                     "C++ Basics and Syntax",
                     "Pointers and Memory Management",
@@ -782,7 +904,7 @@
             },
             "golang": {
                 title: "Go Language Crash Course",
-                youtubeId: "YS4e4q9oBaU", // Placeholder YouTube ID
+                youtubeId: "YS4e4q9oBaU",
                 topics: [
                     "Go Language Basics",
                     "Variables, Constants, and Data Types",
@@ -798,7 +920,7 @@
             },
             "rust": {
                 title: "Rust Programming: A Practical Guide",
-                youtubeId: "BpPEoZW5IiY", // Placeholder YouTube ID
+                youtubeId: "BpPEoZW5IiY",
                 topics: [
                     "Rust Basics and Ownership",
                     "Borrowing and Lifetimes",
@@ -814,7 +936,7 @@
             },
             "webdev": {
                 title: "Full Stack Web Development",
-                youtubeId: "HGTJBPNC-Gw", // Placeholder YouTube ID
+                youtubeId: "HGTJBPNC-Gw",
                 topics: [
                     "HTML5 Fundamentals",
                     "CSS3 Styling and Layouts (Flexbox, Grid)",
@@ -830,7 +952,7 @@
             },
             "datasci": {
                 title: "Data Science",
-                youtubeId: "ua-CiDNNj30", // Placeholder YouTube ID
+                youtubeId: "ua-CiDNNj30",
                 topics: [
                     "Introduction to Data Science Workflow",
                     "Python for Data Science (NumPy, Pandas)",
@@ -846,7 +968,7 @@
             },
             "ml": {
                 title: "Machine Learning",
-                youtubeId: "7IgVGSaQPaw", // Placeholder YouTube ID
+                youtubeId: "7IgVGSaQPaw",
                 topics: [
                     "Introduction to Data Science Workflow",
                     "Python for Data Science (NumPy, Pandas)",
@@ -862,7 +984,7 @@
             },
             "sql": {
                 title: "SQL & Database Management",
-                youtubeId: "5OdVJbNCSso", // Placeholder YouTube ID
+                youtubeId: "5OdVJbNCSso",
                 topics: [
                     "Introduction to Relational Databases",
                     "SQL SELECT Statements",
@@ -878,7 +1000,7 @@
             },
             "devops": {
                 title: "DevOps & Cloud Essentials",
-                youtubeId: "6GQRb4fGvtk", // Placeholder YouTube ID
+                youtubeId: "6GQRb4fGvtk",
                 topics: [
                     "Introduction to DevOps Principles",
                     "Version Control with Git",
@@ -893,8 +1015,7 @@
             }
         };
 
-        let currentCourse = null; // Stores the currently viewed course object
-
+        let currentCourse = null;
         const courseOverlay = document.getElementById('course-overlay');
         const overlayCourseTitle = document.getElementById('overlay-course-title');
         const overlayYoutubeEmbed = document.getElementById('overlay-youtube-embed');
@@ -906,10 +1027,9 @@
             button.addEventListener('click', function(event) {
                 const courseId = this.dataset.courseId;
                 if (courseId) {
-                    event.preventDefault(); // Prevent default link behavior for internal courses
+                    event.preventDefault();
                     openCourseOverlay(courseId);
                 }
-                // For GFG links, default behavior (opening in new tab) is preserved
             });
         });
 
@@ -920,7 +1040,6 @@
                 return;
             }
 
-            // Load completed topics from localStorage if available, otherwise initialize
             const savedCompletedTopics = localStorage.getItem(`course-${courseId}-completed`);
             if (savedCompletedTopics) {
                 currentCourse.completedTopics = JSON.parse(savedCompletedTopics);
@@ -930,8 +1049,7 @@
 
             overlayCourseTitle.textContent = currentCourse.title;
 
-            // Load YouTube embed
-            overlayYoutubeEmbed.innerHTML = ''; // Clear previous embed
+            overlayYoutubeEmbed.innerHTML = '';
             if (currentCourse.youtubeId) {
                 const iframe = document.createElement('iframe');
                 iframe.src = `https://www.youtube.com/embed/${currentCourse.youtubeId}`;
@@ -941,8 +1059,7 @@
                 overlayYoutubeEmbed.appendChild(iframe);
             }
 
-            // Populate topics
-            courseTopicsContainer.innerHTML = '<h3>Topics</h3>'; // Clear previous topics and re-add heading
+            courseTopicsContainer.innerHTML = '<h3>Topics</h3>';
             currentCourse.topics.forEach((topic, index) => {
                 const topicItem = document.createElement('div');
                 topicItem.classList.add('topic-item');
@@ -976,14 +1093,14 @@
             });
 
             updateProgressBar();
-            courseOverlay.style.display = 'flex'; // Show the overlay
-            document.body.style.overflow = 'hidden'; // Prevent scrolling on the main page
+            courseOverlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
 
         function closeCourseOverlay() {
-            courseOverlay.style.display = 'none'; // Hide the overlay
-            document.body.style.overflow = ''; // Restore scrolling on the main page
-            currentCourse = null; // Clear current course
+            courseOverlay.style.display = 'none';
+            document.body.style.overflow = '';
+            currentCourse = null;
         }
 
         function updateProgressBar() {
@@ -1000,7 +1117,101 @@
             courseProgress.style.width = `${progress}%`;
             progressPercentage.textContent = `${Math.round(progress)}%`;
         }
+
+        // --- Timer and Penalty Logic ---
+        let totalTime = 60 * 1;
+        let penaltyDuration = 15 * 60;
+        let timerDisplay = document.getElementById('course-timer');
+        let progress = parseInt(localStorage.getItem('courseProgress') || '0');
+        let penaltyActive = false;
+
+        // This function sends a mock email notification
+        function sendEmailNotification() {
+            console.log(`Sending email to ${loggedInUserEmail}...`);
+            showMessage(`Email notification sent to ${loggedInUserEmail} about your pending work!`);
+        }
+
+        // This function activates the penalty state
+        function activatePenalty() {
+            penaltyActive = true;
+            localStorage.setItem('penaltyUntil', Date.now() + penaltyDuration * 1000);
+            document.getElementById('penalty-overlay').style.display = 'block';
+            sendEmailNotification();
+            setTimeout(() => {
+                document.getElementById('penalty-overlay').style.display = 'none';
+                penaltyActive = false;
+                localStorage.removeItem('penaltyUntil');
+                totalTime = 60 * 60;
+                updateTimer();
+            }, penaltyDuration * 1000);
+        }
+
+        // This function updates the timer on the page
+        function updateTimer() {
+            if (penaltyActive) return;
+            if (totalTime <= 0) {
+                if (progress < 20) {
+                    activatePenalty();
+                }
+                return;
+            }
+            let minutes = Math.floor(totalTime / 60);
+            let seconds = totalTime % 60;
+            timerDisplay.textContent = `Time Left: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            totalTime--;
+            setTimeout(updateTimer, 1000);
+        }
+
+        // This function resets the penalty state
+        function resetPenalty() {
+            penaltyActive = false;
+            localStorage.removeItem('penaltyUntil');
+            document.getElementById('penalty-overlay').style.display = 'none';
+            totalTime = 60 * 1;
+            updateTimer();
+            showMessage("Penalty has been cleared. The timer has been reset.");
+        }
+
+        // Event listener for the "Simulate Progress" button
+        document.getElementById('mark-progress').addEventListener('click', () => {
+            if (penaltyActive) return;
+            progress = Math.min(100, progress + 10);
+            localStorage.setItem('courseProgress', progress);
+            showMessage(`Course progress marked at ${progress}%`);
+        });
+
+        // Event listener for the "Trigger Penalty" button
+        document.getElementById('trigger-penalty').addEventListener('click', () => {
+            if (penaltyActive) {
+                showMessage('Penalty is already active!');
+                return;
+            }
+            activatePenalty();
+        });
+
+        document.getElementById('clear-penalty').addEventListener('click', resetPenalty);
+
+        document.getElementById('admin-exit').addEventListener('click', () => {
+             if (penaltyActive) {
+                resetPenalty();
+            }
+        });
+        window.onload = () => {
+            const penaltyUntil = parseInt(localStorage.getItem('penaltyUntil') || '0');
+            if (Date.now() < penaltyUntil) {
+                penaltyActive = true;
+                document.getElementById('penalty-overlay').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('penalty-overlay').style.display = 'none';
+                    penaltyActive = false;
+                    localStorage.removeItem('penaltyUntil');
+                    totalTime = 60 * 60;
+                    updateTimer();
+                }, penaltyUntil - Date.now());
+            } else {
+                updateTimer();
+            }
+        };
     </script>
 </body>
 </html>
-
