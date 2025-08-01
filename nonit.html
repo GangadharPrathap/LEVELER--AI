@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeMonochrome - Non-Technical Skills</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Professional Theme */
+        :root {
+            --bg-primary: #f8f9fa; /* Light background */
+            --bg-secondary: #ffffff; /* Card background */
+            --bg-tertiary: #e9ecef; /* Header/Footer background */
+            --text-primary: #343a40; /* Dark text */
+            --text-secondary: #6c757d; /* Lighter text */
+            --accent-color: #007bff; /* Primary accent blue */
+            --accent-hover: #0056b3; /* Darker blue on hover */
+            --border-color: #dee2e6; /* Light gray border */
+            --shadow-light: rgba(0, 0, 0, 0.08);
+            --shadow-medium: rgba(0, 0, 0, 0.15);
+        }
+
+        /* Dark Mode (Professional Dark) */
+        body.dark-theme {
+            --bg-primary: #212529; /* Dark background */
+            --bg-secondary: #2c3034; /* Darker card background */
+            --bg-tertiary: #343a40; /* Dark header/footer */
+            --text-primary: #f8f9fa; /* Light text */
+            --text-secondary: #adb5bd; /* Lighter text in dark mode */
+            --accent-color: #66b2ff; /* Lighter blue for dark mode accent */
+            --accent-hover: #3385ff;
+            --border-color: #495057; /* Darker border */
+            --shadow-light: rgba(0, 0, 0, 0.3);
+            --shadow-medium: rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        header {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 1.2rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px var(--shadow-light);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .logo h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            padding-bottom: 0.2rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        #themeToggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.4em;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.2s ease;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        #themeToggle:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            color: var(--text-primary);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .skill-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px var(--shadow-light);
+        }
+
+        .skill-card:hover {
+            box-shadow: 0 8px 20px var(--shadow-medium);
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .card-image {
+            height: 200px;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.8rem;
+        }
+
+        .card-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 0.7rem;
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .card-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .card-content a.tutorial-button {
+            display: inline-block;
+            padding: 0.7rem 1.4rem;
+            background-color: var(--accent-color);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 6px;
+            box-shadow: 0 3px 8px var(--shadow-light);
+        }
+
+        .card-content a.tutorial-button:hover {
+            background-color: var(--accent-hover);
+            box-shadow: 0 5px 15px var(--shadow-medium);
+        }
+
+        footer {
+            background-color: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 1.5rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            header, .main-content, footer {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+            .logo h1 { font-size: 1.5rem; }
+            .nav-links { gap: 1.5rem; }
+            .nav-links a { font-size: 0.9rem; }
+            .section-title { font-size: 2.2rem; }
+            .skills-grid { gap: 1.8rem; }
+            .skill-card { padding: 1.5rem; }
+            .card-content h3 { font-size: 1.3rem; }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            .logo { width: 100%; text-align: center; margin-bottom: 0.5rem; }
+            .nav-links { width: 100%; justify-content: center; gap: 0.8rem; flex-wrap: wrap; }
+            .nav-links a { padding: 0.4rem 0.6rem; border-bottom: none; }
+            #themeToggle { margin-top: 10px; }
+            .main-content { padding: 0 1rem; margin: 2rem auto; }
+            .section-title { font-size: 2rem; margin-bottom: 2rem; }
+            .skills-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .card-image { height: 160px; }
+            .card-content h3 { font-size: 1.2rem; }
+            .card-content p { font-size: 0.9rem; }
+            footer { padding: 1rem 1rem; margin-top: 3rem; }
+        }
+
+        @media (max-width: 480px) {
+            header, .main-content, footer {
+                padding-left: 0.8rem;
+                padding-right: 0.8rem;
+            }
+            .logo h1 { font-size: 1.3rem; }
+            .nav-links a { font-size: 0.8rem; padding: 0.3rem 0.5rem; }
+            .section-title { font-size: 1.8rem; }
+            .card-content { padding: 1.2rem; }
+            .card-content h3 { font-size: 1.1rem; }
+            .card-content p { font-size: 0.85rem; }
+            .card-content a.tutorial-button { font-size: 0.8rem; padding: 0.6rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>CodeMonochrome</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="tutorials.html">Tutorials</a>
+                <a href="documentation.html">Documentation</a>
+                <a href="cheat_sheets.html">Cheat Sheets</a>
+                <a href="languages_and_courses.html">Languages & Courses</a>
+                <a href="non_technical_skills.html" class="active">Non-Technical Skills</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+            <button id="themeToggle">☀️</button>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <section id="non-technical-skills">
+            <h2 class="section-title">Essential Non-Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="card-image">
+                        <img src="https://www.aspirantiasacademy.in/wp-content/uploads/2023/05/Daily-Current-Affairs-in-English.webp" alt="">
+                    </div>
+                    <div class="card-content">
+                        <h3>Daily Current Affairs Analysis</h3>
+                        <p>Stay updated with national and international events for competitive exams.</p>
+                        <a href="https://www.youtube.com/results?search_query=daily+current+affairs+for+civil+services" target="_blank" class="tutorial-button">Watch Tutorials (YouTube)</a>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="card-image">
+                        <img src="https://www.eurokidsindia.com/blog/wp-content/uploads/2023/10/ancient-indian-history.jpg" alt="">
+                    </div>
+                    <div class="card-content">
+                        <h3>Indian History for UPSC/PSC</h3>
+                        <p>Comprehensive coverage of Ancient, Medieval, and Modern Indian History.</p>
+                        <a href="https://www.youtube.com/results?search_query=indian+history+for+upsc" target="_blank" class="tutorial-button">Watch Tutorials (YouTube)</a>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="card-image">
+                        <img src="https://gpmgcm.ac.in/wp-content/uploads/2024/01/Geography-Department-Background.jpg" alt="">
+                    </div>
+                    <div class="card-content">
+                        <h3>Geography: India & World</h3>
+                        <p>Physical, Human, and Economic Geography relevant for civil services.</p>
+                        <a href="https://www.youtube.com/results?search_query=geography+for+upsc" target="_blank" class="tutorial-button">Watch Tutorials (YouTube)</a>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="card-image">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg18yC4SfF-64vaJmQ2Hs0WQZopPgTGlvyHw&s" alt="">
+                    </div>
+                    <div class="card-content">
+                        <h3>Indian Polity & Constitution</h3>
+                        <p>In-depth study of the Indian Constitution, governance, and political system.</p>
+                        <a href="https://www.youtube.com/results?search_query=indian+polity+for+upsc" target="_blank" class="tutorial-button">Watch Tutorials (YouTube)</a>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="card-image">
+                            <img src="https://tiimg.tistatic.com/cmsmedia/smetimes/news/indian-economy-news/2025/01/09/indianeconomy.jpg" alt="">
+                    </div>
+                    <div class="card-content">
+                        <h3>Indian Economy & Development</h3>
+                        <p>Key concepts of Indian economy, planning, and current economic issues.</p>
+                        <a href="https://www.youtube.com/results?search_query=indian+economy+for+upsc" target="_blank" class="tutorial-button">Watch Tutorials (YouTube)</a>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="card-image">
+                            <img src="https://miro.medium.com/v2/resize:fit:849/1*m8QdTxtATq5e3qOPVL2YCg@2x.jpeg" alt="">
+                    </div>
+                    <div class="card-content">
+                        <h3>Ethics, Integrity & Aptitude</h3>
+                        <p>Foundational values and principles for public service and problem-solving.</p>
+                        <a href="https://www.youtube.com/results?search_query=ethics+integrity+aptitude+upsc" target="_blank" class="tutorial-button">Watch Tutorials (YouTube)</a>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="card-image">
+                            <img src="https://www.careerpower.in/blog/wp-content/uploads/sites/2/2024/10/26100830/Essay-Writing.jpg" alt="">
+                    </div>
+                    <div class="card-content">
+                        <h3>Essay Writing for Competitive Exams</h3>
+                        <p>Techniques for structuring, writing, and presenting compelling essays.</p>
+                        <a href="https://www.youtube.com/results?search_query=essay+writing+for+civil+services" target="_blank" class="tutorial-button">Watch Tutorials (YouTube)</a>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="card-image">
+                        <img src="https://media.geeksforgeeks.org/wp-content/uploads/20230502171656/Decision-making-copy.webp" alt="">
+                    </div>
+                    <div class="card-content">
+                        <h3>Decision Making & Problem Solving</h3>
+                        <p>Develop critical thinking and effective decision-making abilities.</p>
+                        <a href="https://www.youtube.com/results?search_query=decision+making+skills+tutorial" target="_blank" class="tutorial-button">Watch Tutorials (YouTube)</a>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="card-image">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYdpCuYiQX9x3V3BX1pS58ZDXFgV3MOUbwQA&s" alt="">
+                    </div>
+                    <div class="card-content">
+                        <h3>Effective Communication Skills</h3>
+                        <p>Enhance verbal, non-verbal, and written communication for interviews and public speaking.</p>
+                        <a href="https://www.youtube.com/results?search_query=effective+communication+skills+tutorial" target="_blank" class="tutorial-button">Watch Tutorials (YouTube)</a>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="card-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROkR_gzSPdIi8Q5J7YrsyNGjjDxMEyh9cSYA&s" alt="">
+                    </div>
+                    <div class="card-content">
+                        <h3>Logical Reasoning & Analytical Ability</h3>
+                        <p>Improve your analytical and logical thinking for aptitude tests.</p>
+                        <a href="https://www.youtube.com/results?search_query=logical+reasoning+tutorial" target="_blank" class="tutorial-button">Watch Tutorials (YouTube)</a>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="card-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc4kITNX0rNCm-Oxdqkjo6HeGeT4GoKNn3rw&s" alt="">
+                    </div>
+                    <div class="card-content">
+                        <h3>Quantitative Aptitude for Exams</h3>
+                        <p>Master numerical ability, data interpretation, and mathematical concepts.</p>
+                        <a href="https://www.youtube.com/results?search_query=quantitative+aptitude+tutorial" target="_blank" class="tutorial-button">Watch Tutorials (YouTube)</a>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="card-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl7-LGpGY7DQt7mpi-cE3qbr4zm8KQ3r4dgQ&s" alt="">
+                    </div>
+                    <div class="card-content">
+                        <h3>Civil Services Interview Preparation</h3>
+                        <p>Guidance on interview techniques, mock interviews, and personality development.</p>
+                        <a href="https://www.youtube.com/results?search_query=civil+services+interview+preparation" target="_blank" class="tutorial-button">Watch Tutorials (YouTube)</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="copyright">
+            <p>© 2025 CodeMonochrome. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        function setTheme(theme) {
+            if (theme === 'light') {
+                body.classList.remove('dark-theme');
+                themeToggle.textContent = '☀️'; // Sun icon for light mode
+            } else {
+                body.classList.add('dark-theme');
+                themeToggle.textContent = '🌙'; // Moon icon for dark mode
+            }
+            localStorage.setItem('theme', theme);
+        }
+
+        function toggleTheme() {
+            if (body.classList.contains('dark-theme')) {
+                setTheme('light');
+            } else {
+                setTheme('dark');
+            }
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light'; // Default to light mode
+            setTheme(savedTheme);
+
+            // Add 'active' class to current page link in navbar
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
