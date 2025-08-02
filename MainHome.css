@@ -1,544 +1,660 @@
-    /* --- General & Body Styles --- */
+/* --- General & Body Styles --- */
 
-    body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        background-color: #121212;
-        color: #F0F4F8;
-        overflow-x: hidden;
-        transition: background-color 0.3s ease, color 0.3s ease;
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #121212;
+    color: #F0F4F8;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- Nav Bar Styles --- */
+
+.nav-section {
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+    box-sizing: border-box;
+    border-bottom: 1px solid transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-container img {
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+}
+
+.logo-placeholder {
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    overflow: hidden;
+    object-fit: fill;
+    transition: background-color 0.3s ease;
+}
+
+.site-name {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.nav-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.login-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    color: red;
+    background-color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.login-btn:hover {
+    background-color: #e0e0e0;
+    color: red;
+}
+
+/* --- Hero Image Section --- */
+
+.hero-image-block {
+    position: relative;
+    width: 100%;
+    height: 90svh;
+    transform: translateY(65px);
+}
+
+.hero-image-block img.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.hero-image-block::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+    z-index: -1;
+    transition: background-color 0.3s ease;
+}
+
+.hero-overlay-text {
+    z-index: 3;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 20px;
+    max-width: 90%;
+    color: #ffffff;
+}
+
+.hero-overlay-text h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #f1f1f1;
+}
+
+.hero-overlay-text .highlight {
+    color: #00ffff;
+}
+
+.hero-overlay-text .tagline {
+    font-size: 20px;
+    margin-top: 10px;
+    color: #e0e0e0;
+}
+
+.hero-overlay-text .glow {
+    color: #39ff14;
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
+    font-weight: bold;
+}
+
+/* --- About Us Section --- */
+
+.about-us {
+    background: #121212;
+    padding: 80px 30px;
+    border-top: 1px solid #2a2a2a;
+    text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.about-us h2,
+.about-us p,
+.about-card,
+.about-card h3,
+.about-card ul li {
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.about-us h2 {
+    font-size: 36px;
+    color: #d60000;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.about-us p {
+    font-size: 18px;
+    color: #ccc;
+    line-height: 1.7;
+    margin: 25px auto;
+    max-width: 90%;
+}
+
+.about-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.about-card {
+    background-color: #242424;
+    border-left: 6px solid #d60000;
+    border-radius: 16px;
+    padding: 30px 25px;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+}
+
+.about-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.about-card h3 {
+    font-size: 22px;
+    color: #d60000;
+    margin-bottom: 20px;
+}
+
+.about-card ul {
+    padding-left: 20px;
+    list-style: none;
+}
+
+.about-card ul li {
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: #ccc;
+}
+
+/* --- Alternating Feature Sections --- */
+
+.feature-section {
+    display: flex;
+    align-items: center;
+    background-color: #121212;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+.feature-section:nth-of-type(odd) {
+    flex-direction: row-reverse;
+    background-color: #1F1F1F;
+}
+
+.feature-image {
+    width: 35%;
+    box-sizing: border-box;
+}
+
+.feature-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.feature-content {
+    width: 65%;
+    padding: 3rem;
+    box-sizing: border-box;
+    transition: color 0.3s ease;
+}
+
+.feature-content h2,
+.feature-content p {
+    transition: color 0.3s ease;
+}
+
+.feature-content h2 {
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #f1f1f1;
+}
+
+.feature-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #ccc;
+}
+
+/* --- Shared Button Style --- */
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #d60000;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #a00000;
+    transform: translateY(-2px);
+}
+
+/* --- Footer --- */
+
+.site-footer {
+    background-color: #1A1A1A;
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 14px;
+    border-top: 1px solid #2a2a2a;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.site-footer a {
+    color: #d60000;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+/* --- THEME TOGGLE BUTTON STYLES --- */
+
+.theme-toggle-btn {
+    background: none;
+    border: 1px solid #555;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 30px;
+    height: 26px;
+    transition: border-color 0.3s ease;
+}
+
+.theme-toggle-btn .icon-sun,
+.theme-toggle-btn .icon-moon {
+    font-size: 16px;
+    transition: opacity 0.3s ease;
+}
+
+.theme-toggle-btn .icon-moon {
+    opacity: 1;
+}
+
+.theme-toggle-btn .icon-sun {
+    opacity: 0;
+    position: absolute;
+}
+
+/* --- LIGHT MODE STYLES --- */
+
+body.light-mode {
+    background-color: #f0f4f8;
+    color: #121212;
+}
+
+.light-mode .nav-section {
+    background: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid #ddd;
+}
+
+.light-mode .logo-placeholder {
+    background-color: #121212;
+}
+
+.light-mode .site-name,
+.light-mode .nav-links a {
+    color: #121212;
+}
+
+.light-mode .nav-links a::after {
+    background-color: #121212;
+}
+
+.light-mode .login-btn {
+    color: white;
+    background-color: #d60000;
+}
+
+.light-mode .login-btn:hover {
+    background-color: #a00000;
+}
+
+.light-mode .theme-toggle-btn {
+    border-color: #ccc;
+}
+
+.light-mode .theme-toggle-btn .icon-moon {
+    opacity: 0;
+}
+
+.light-mode .theme-toggle-btn .icon-sun {
+    opacity: 1;
+}
+
+.light-mode .about-us {
+    background: #ffffff;
+    border-top-color: #eee;
+}
+
+.light-mode .about-us p {
+    color: #555;
+}
+
+.light-mode .about-card {
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.light-mode .about-card ul li {
+    color: #555;
+}
+
+.light-mode .feature-section {
+    background-color: #ffffff;
+}
+
+.light-mode .feature-section:nth-of-type(even) {
+    background-color: #f0f4f8;
+}
+
+.light-mode .feature-content h2 {
+    color: #121212;
+}
+
+.light-mode .feature-content p {
+    color: #555;
+}
+
+.light-mode .site-footer {
+    background-color: #e9ecef;
+    color: #121212;
+    border-top-color: #ddd;
+}
+
+/* --- Responsive & Animation Styles --- */
+
+.feature-image,
+.feature-content,
+.about-us h2,
+.about-us p,
+.about-us .btn {
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.about-card {
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease, opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.js-init-left {
+    opacity: 0;
+    transform: translateX(-100px);
+}
+
+.js-init-right {
+    opacity: 0;
+    transform: translateX(100px);
+}
+
+.js-init-down {
+    opacity: 0;
+    transform: translateY(-50px);
+}
+
+.js-init-up {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.animated-arrow-left {
+    display: inline-flex;
+    align-items: center;
+    font-size: 2rem;
+    margin-right: 8px;
+    color: #FF5722;
+    animation: arrowWiggleRight 1s infinite alternate;
+    font-weight: bold;
+}
+
+@keyframes arrowWiggleRight {
+    0% {
+        transform: translateX(0);
+        opacity: 0.5;
     }
-
-    html {
-        scroll-behavior: smooth;
+    80% {
+        transform: translateX(8px);
+        opacity: 1;
     }
-    /* --- Nav Bar Styles --- */
-
-    .nav-section {
-        width: 100%;
-        height: 60px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 10;
-        display: flex;
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(8px);
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 25px;
-        box-sizing: border-box;
-        border-bottom: 1px solid transparent;
-        transition: background-color 0.3s ease, border-color 0.3s ease;
+    100% {
+        transform: translateX(5px);
+        opacity: 0.8;
     }
+}
 
-    .logo-container  {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }.logo-container img{
-        overflow: hidden;
-        width: 40px;
-        height: 40px;
+/* ### Media Queries for All Screen Sizes ###
+    This section ensures the layout is responsive from extra-large desktops to small mobile devices.
+*/
+
+/* Extra-large screens (desktops and laptops, 1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+        margin: 0 auto;
     }
-
-    .logo-placeholder {
-        width: 40px;
-        height: 40px;
-        background-color: #ffffff;
-        border-radius: 5px;
-        overflow: hidden;
-        object-fit: fill;
-        transition: background-color 0.3s ease;
-    }
-
-    .site-name {
-        color: white;
-        font-size: 22px;
-        font-weight: bold;
-        transition: color 0.3s ease;
-    }
-
-    .nav-links {
-        display: flex;
-        gap: 40px;
-    }
-
-    .nav-links a {
-        color: white;
-        text-decoration: none;
-        font-size: 18px;
-        font-weight: 500;
-        position: relative;
-        padding-bottom: 5px;
-        transition: color 0.3s ease;
-    }
-
-    .nav-links a::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        transform: scaleX(0);
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        background-color: #ffffff;
-        transform-origin: bottom right;
-        transition: transform 0.25s ease-out;
-    }
-
-    .nav-links a:hover::after {
-        transform: scaleX(1);
-        transform-origin: bottom left;
-    }
-
-    .login-container {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .login-btn {
-        display: inline-block;
-        padding: 10px 24px;
-        color: red;
-        background-color: white;
-        text-decoration: none;
-        font-weight: bold;
-        border-radius: 5px;
-        transition: background-color 0.2s ease, color 0.2s ease;
-    }
-
-    .login-btn:hover {
-        background-color: #e0e0e0;
-        color: red;
-    }
-    /* --- Hero Image Section --- */
-
-    .hero-image-block {
-        position: relative;
-        width: 100%;
-        height: 90svh;
-        transform: translateY(65px);
-    }
-
-    .hero-image-block img.hero-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-    }
-
-    .hero-image-block::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        pointer-events: none;
-        z-index: -1;
-        transition: background-color 0.3s ease;
-    }
-
-    .hero-overlay-text {
-        z-index: 3;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        padding: 20px;
-        max-width: 90%;
-        color: #ffffff;
-    }
-
-    .hero-overlay-text h1 {
-        font-size: 40px;
-        font-weight: 700;
-        line-height: 1.4;
-        color: #f1f1f1;
-    }
-
-    .hero-overlay-text .highlight {
-        color: #00ffff;
-    }
-
-    .hero-overlay-text .tagline {
-        font-size: 20px;
-        margin-top: 10px;
-        color: #e0e0e0;
-    }
-
-    .hero-overlay-text .glow {
-        color: #39ff14;
-        text-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
-        font-weight: bold;
-    }
-    /* --- About Us Section --- */
-
-    .about-us {
-        background: #121212;
-        padding: 80px 30px;
-        border-top: 1px solid #2a2a2a;
-        text-align: center;
-        transition: background-color 0.3s ease, border-color 0.3s ease;
-    }
-
-    .about-us h2,
-    .about-us p,
-    .about-card,
-    .about-card h3,
-    .about-card ul li {
-        transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-    }
-
-    .about-us h2 {
-        font-size: 36px;
-        color: #d60000;
-        margin-bottom: 15px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .about-us p {
-        font-size: 18px;
-        color: #ccc;
-        line-height: 1.7;
-        margin: 25px auto;
-        max-width: 90%;
-    }
-
-    .about-columns {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 30px;
-        margin-top: 30px;
-    }
-
-    .about-card {
-        background-color: #242424;
-        border-left: 6px solid #d60000;
-        border-radius: 16px;
-        padding: 30px 25px;
-        max-width: 420px;
-        width: 100%;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        text-align: left;
-    }
-
-    .about-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-    }
-
-    .about-card h3 {
-        font-size: 22px;
-        color: #d60000;
-        margin-bottom: 20px;
-    }
-
-    .about-card ul {
-        padding-left: 20px;
-        list-style: none;
-    }
-
-    .about-card ul li {
-        margin-bottom: 12px;
-        font-size: 16px;
-        color: #ccc;
-    }
-    /* --- Alternating Feature Sections --- */
-
-    .feature-section {
-        display: flex;
-        align-items: center;
-        background-color: #121212;
-        overflow: hidden;
-        transition: background-color 0.3s ease;
-    }
-
-    .feature-section:nth-of-type(odd) {
-        flex-direction: row-reverse;
-        background-color: #1F1F1F;
-    }
-
-    .feature-image {
-        width: 35%;
-        box-sizing: border-box;
-    }
-
-    .feature-image img {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    .feature-content {
-        width: 65%;
-        padding: 3rem;
-        box-sizing: border-box;
-        transition: color 0.3s ease;
-    }
-
-    .feature-content h2,
-    .feature-content p {
-        transition: color 0.3s ease;
-    }
-
     .feature-content h2 {
-        font-size: 2.5rem;
-        margin-top: 0;
-        margin-bottom: 1rem;
-        color: #f1f1f1;
+        font-size: 3rem;
     }
+}
 
+/* Large screens (tablets and some desktops, 992px to 1199px) */
+@media (max-width: 1199px) {
+    .nav-links {
+        gap: 25px;
+    }
+    .hero-overlay-text h1 {
+        font-size: 36px;
+    }
+}
+
+/* Medium screens (tablets, 768px to 991px) */
+@media (max-width: 991px) {
+    .nav-links {
+        gap: 20px;
+    }
+    .nav-section {
+        padding: 0 15px;
+    }
+    .hero-overlay-text h1 {
+        font-size: 32px;
+    }
+    .feature-content h2 {
+        font-size: 2.25rem;
+    }
     .feature-content p {
-        font-size: 1.1rem;
-        margin-bottom: 1.5rem;
-        color: #ccc;
+        font-size: 1rem;
     }
-    /* --- Shared Button Style --- */
+}
 
-    .btn {
-        display: inline-block;
-        padding: 12px 24px;
-        background-color: #d60000;
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-        border-radius: 8px;
-        transition: background-color 0.3s ease, transform 0.2s ease;
+/* Small screens (landscape phones and tablets, 576px to 767px) */
+@media (max-width: 767px) {
+    .nav-links {
+        display: none;
     }
-
-    .btn:hover {
-        background-color: #a00000;
-        transform: translateY(-2px);
+    .login-container {
+        gap: 10px;
     }
-    /* --- Footer --- */
-
-    .site-footer {
-        background-color: #1A1A1A;
-        color: white;
-        padding: 30px 20px;
-        text-align: center;
+    .login-btn {
+        padding: 8px 16px;
         font-size: 14px;
-        border-top: 1px solid #2a2a2a;
-        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     }
-
-    .site-footer a {
-        color: #d60000;
-        text-decoration: none;
-        margin: 0 5px;
+    .hero-overlay-text h1 {
+        font-size: 28px;
     }
-
-    .site-footer a:hover {
-        text-decoration: underline;
-    }
-    /* --- THEME TOGGLE BUTTON STYLES --- */
-
-    .theme-toggle-btn {
-        background: none;
-        border: 1px solid #555;
-        border-radius: 20px;
-        cursor: pointer;
-        padding: 3px;
-        display: flex;
-        align-items: center;
-        position: relative;
-        width: 30px;
-        height: 26px;
-        transition: border-color 0.3s ease;
-    }
-
-    .theme-toggle-btn .icon-sun,
-    .theme-toggle-btn .icon-moon {
+    .hero-overlay-text .tagline {
         font-size: 16px;
-        transition: opacity 0.3s ease;
     }
-
-    .theme-toggle-btn .icon-moon {
-        opacity: 1;
+    .about-us {
+        padding: 60px 15px;
     }
-
-    .theme-toggle-btn .icon-sun {
-        opacity: 0;
-        position: absolute;
+    .about-us h2 {
+        font-size: 28px;
     }
-    /* --- LIGHT MODE STYLES --- */
-    /* --- LIGHT MODE STYLES --- */
-    /* CORRECTED: Removed the space between 'body' and '.light-mode' */
-
-    body.light-mode {
-        background-color: #f0f4f8;
-        /* Using a slightly softer white */
-        color: #121212;
+    .about-columns {
+        flex-direction: column;
     }
-    /* All other light-mode styles were correct and don't need changing */
-
-    .light-mode .nav-section {
-        background: rgba(255, 255, 255, 0.7);
-        border-bottom: 1px solid #ddd;
+    .feature-section,
+    .feature-section:nth-of-type(odd) {
+        flex-direction: column;
     }
-
-    .light-mode .logo-placeholder {
-        background-color: #121212;
-    }
-
-    .light-mode .site-name,
-    .light-mode .nav-links a {
-        color: #121212;
-    }
-
-    .light-mode .nav-links a::after {
-        background-color: #121212;
-    }
-
-    .light-mode .login-btn {
-        color: white;
-        background-color: #d60000;
-    }
-
-    .light-mode .login-btn:hover {
-        background-color: #a00000;
-    }
-
-    .light-mode .theme-toggle-btn {
-        border-color: #ccc;
-    }
-
-    .light-mode .theme-toggle-btn .icon-moon {
-        opacity: 0;
-    }
-
-    .light-mode .theme-toggle-btn .icon-sun {
-        opacity: 1;
-    }
-    /*
-    */
-
-    .light-mode .about-us {
-        background: #ffffff;
-        border-top-color: #eee;
-    }
-
-    .light-mode .about-us p {
-        color: #555;
-    }
-
-    .light-mode .about-card {
-        background-color: #f9f9f9;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    }
-
-    .light-mode .about-card ul li {
-        color: #555;
-    }
-
-    .light-mode .feature-section {
-        background-color: #ffffff;
-    }
-
-    .light-mode .feature-section:nth-of-type(even) {
-        background-color: #f0f4f8;
-    }
-
-    .light-mode .feature-content h2 {
-        color: #121212;
-    }
-
-    .light-mode .feature-content p {
-        color: #555;
-    }
-
-    .light-mode .site-footer {
-        background-color: #e9ecef;
-        color: #121212;
-        border-top-color: #ddd;
-    }
-    /* --- Responsive & Animation Styles (No Changes Needed) --- */
-
-    @media (max-width: 768px) {
-        .nav-links {
-            display: none;
-        }
-        .feature-section,
-        .feature-section:nth-of-type(.feature-section:nth-of-type(even4)) {
-            flex-direction: column;
-        }
-        .feature-image,
-        .feature-content {
-            width: 100%;
-        }
-        .feature-content {
-            padding: 2rem;
-            text-align: center;
-        }
-        .feature-content h2 {
-            font-size: 2rem;
-        }
-    }
-
     .feature-image,
-    .feature-content,
-    .about-us h2,
-    .about-us p,
-    .about-us .btn {
-        transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    .feature-content {
+        width: 100%;
     }
-
-    .about-card {
-        transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease, opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    .feature-content {
+        padding: 2rem 1rem;
+        text-align: center;
     }
-
-    .js-init-left {
-        opacity: 0;
-        transform: translateX(-100px);
+    .feature-content h2 {
+        font-size: 2rem;
     }
-
-    .js-init-right {
-        opacity: 0;
-        transform: translateX(100px);
+    .site-footer {
+        padding: 20px 10px;
     }
+}
 
-    .js-init-down {
-        opacity: 0;
-        transform: translateY(-50px);
+/* Extra-small screens (portrait phones, less than 576px) */
+@media (max-width: 575px) {
+    .nav-section {
+        height: 50px;
+        padding: 0 10px;
     }
-
-    .js-init-up {
-        opacity: 0;
+    .logo-container {
+        gap: 10px;
+    }
+    .logo-placeholder, .logo-container img {
+        width: 35px;
+        height: 35px;
+    }
+    .site-name {
+        font-size: 18px;
+    }
+    .login-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    .hero-image-block {
         transform: translateY(50px);
     }
-
-    .animated-arrow-left {
-        display: inline-flex;
-        align-items: center;
-        font-size: 2rem;
-        margin-right: 8px;
-        color: #FF5722;
-        animation: arrowWiggleRight 1s infinite alternate;
-        font-weight: bold;
+    .hero-overlay-text h1 {
+        font-size: 24px;
     }
-
-    @keyframes arrowWiggleRight {
-        0% {
-            transform: translateX(0);
-            opacity: 0.5;
-        }
-        80% {
-            transform: translateX(8px);
-            opacity: 1;
-        }
-        100% {
-            transform: translateX(5px);
-            opacity: 0.8;
-        }
+    .hero-overlay-text .tagline {
+        font-size: 14px;
     }
+    .about-card {
+        padding: 20px 15px;
+    }
+    .feature-content h2 {
+        font-size: 1.5rem;
+    }
+    .btn {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
