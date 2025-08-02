@@ -1914,8 +1914,8 @@ document.addEventListener("DOMContentLoaded", () => {
 function setTheme(theme) {
   const body = document.body;
   const backgroundVideo = document.getElementById('background-video');
-  const lightVideoSrc = '../workout-bg.mp4';
-  const darkVideoSrc = '../workout-bg-dark.mp4';
+  const lightVideoSrc = 'workout-bg.mp4';
+  const darkVideoSrc = 'workout-bg-dark.mp4';
   const lightIcon = document.getElementById('theme-toggle-light-icon');
   const darkIcon = document.getElementById('theme-toggle-dark-icon');
 
@@ -1953,4 +1953,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // Apply saved theme on initial load
   const savedTheme = localStorage.getItem("theme") || "light";
   setTheme(savedTheme);
+
 });
